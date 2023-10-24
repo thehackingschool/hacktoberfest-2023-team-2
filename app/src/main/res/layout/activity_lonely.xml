@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LonelyActivity">
+    tools:context=".LonelyActivity"
+    android:background="@color/background">
 
 
     <TextView
@@ -15,18 +16,19 @@
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:textSize="26dp"
-        android:textColor="@color/black"
+        android:textColor="@color/secondary"
         android:fontFamily="@font/nunito_sans"
         android:layout_marginTop="40dp"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/anime"
         android:layout_width="match_parent"
+        app:lottie_rawRes="@raw/startpage"
         android:layout_height="400dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/title"
         app:lottie_autoPlay="true"
-        app:lottie_url="@raw/bot"
+
         />
 
     <TextView
@@ -37,11 +39,14 @@
         android:textAlignment="center"
         android:layout_below="@+id/anime"
         android:layout_marginHorizontal="30dp"
-        android:textColor="@color/black"
-        android:textSize="20dp"/>
+        android:layout_marginTop="15dp"
+        android:textColor="@color/secondary"
+        android:textSize="20dp"
+        android:fontFamily="@font/nunito_sans"/>
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/start_btn"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_below="@+id/motivate"
@@ -49,7 +54,9 @@
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"
         android:background="@drawable/primary_btn"
-        android:text="Start"/>
+        android:textColor="@color/secondary"
+        android:text="Start"
+        android:textSize="20dp"/>
 
 
 

@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+        <item
+            android:id="@+id/about_us"
+            android:enabled="true"
+            android:title="About us"
+            android:icon="@drawable/baseline_info_24"/>
+
+        <item
+            android:icon="@drawable/baseline_feedback_24"
+            android:id="@+id/feedback"
+            android:enabled="true"
+            android:title="Feedback"/>
+    </group>
+
+
+    <item android:id="@+id/profess_help"
+        android:icon="@drawable/help"
+        android:title="Professional Help"
+        android:enabled="true"
+        android:checkableBehavior="single"
+        />
+
+    <group android:checkableBehavior="single" android:id="@+id/group2">
+        <item android:id="@+id/t_c"
+            android:icon="@drawable/baseline_document_scanner_24"
+            android:enabled="true"
+            android:title="Terms and Conditions"/>
+
+        <item android:id="@+id/p_p"
+            android:icon="@drawable/baseline_privacy_tip_24"
+            android:enabled="true"
+            android:title="Privacy &amp; Policy "/>
+    </group>
+
+
 </menu>

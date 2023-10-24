@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.hacktivators.mentalhealth.OnBoarding.LoginActivity;
 import com.hacktivators.mentalhealth.OnBoarding.StartActivity;
 
 

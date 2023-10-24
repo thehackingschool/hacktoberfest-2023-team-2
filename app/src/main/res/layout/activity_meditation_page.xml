@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
+    tools:context=".MeditationPageActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Meditation"
+        android:textColor="@color/secondary"
+        android:textSize="35dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mindfulness for a better you, \n start trying meditation."
+        android:textColor="@color/secondary"
+        android:textSize="18dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="10dp"
+        android:id="@+id/mindfulltext"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center">
+    </TextView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_below="@+id/mindfulltext"
+        app:lottie_rawRes="@raw/meditation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:id="@+id/animationtxt"
+        android:layout_marginTop="20dp"
+       android:layout_centerHorizontal="true">
+    </com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="timer"
+        android:textSize="25dp"
+        android:textColor="@color/secondary"
+        android:layout_below="@id/animationtxt"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/timer">
+    </TextView>
+
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timer"
+        android:layout_marginTop="20dp"
+        android:thumbTint="@color/secondary"
+        android:progressBackgroundTint="@color/secondary"
+        android:layout_marginHorizontal="40dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_btn"
+        android:text="Start"
+        android:textSize="26dp"
+        android:layout_below="@id/seekbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/secondary"
+        android:background="@drawable/primary_btn"
+        android:padding="15dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/stop"
+        android:text="Stop"
+        android:textSize="26dp"
+        android:layout_below="@id/timer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:background="@drawable/primary_btn"
+        android:padding="15dp"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/how_to_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/start_btn"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/primary"
+        android:background="@drawable/rounded_corner">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_question_mark_24"
+            android:layout_centerVertical="true"
+            android:id="@+id/question"
+            app:tint="@color/secondary"
+            android:layout_marginStart="20dp">
+        </ImageView>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to meditate"
+            android:textColor="@color/secondary"
+            android:layout_toRightOf="@id/question"
+            android:textSize="22dp"
+            android:layout_marginStart="20dp"
+           android:layout_centerVertical="true">
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

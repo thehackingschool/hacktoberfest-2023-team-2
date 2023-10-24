@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OnBoarding.InfoActivity">
+    tools:context=".OnBoarding.InfoActivity"
+    android:background="@color/background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/profile_image"
@@ -48,9 +49,10 @@
             android:text="Enter personal details"
 
             android:layout_centerHorizontal="true"
-            android:textColor="#000000"
+            android:textColor="@color/secondary"
             android:textSize="30dp"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/nunito_sans"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/username_item"
@@ -62,7 +64,6 @@
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-
             app:boxBackgroundMode="outline"
             android:layout_marginHorizontal="35dp"
             android:layout_marginTop="35dp"
@@ -74,6 +75,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:maxLength="30"
+                android:background="@drawable/edit_text"
                 android:layout_height="60dp"
                 android:hint="Name"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -101,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:maxLength="30"
                 android:inputType="number"
+                android:background="@drawable/edit_text"
                 android:layout_height="60dp"
                 android:hint="Date of Birth"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -144,12 +147,18 @@
             android:layout_marginHorizontal="25dp">
             <RadioButton
                 android:id="@+id/male"
+                android:padding="20dp"
+                android:textSize="20dp"
+                android:textColor="@color/secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onGenderSelect"
                 android:text="Male"/>
             <RadioButton
                 android:id="@+id/female"
+                android:textColor="@color/secondary"
+                android:padding="20dp"
+                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onGenderSelect"
@@ -164,9 +173,10 @@
             android:layout_height="wrap_content"
             android:text="Select your Gender"
             android:textSize="25dp"
-            android:textColor="#000000"
+            android:textColor="@color/secondary"
             android:layout_marginTop="25dp"
-            android:layout_marginHorizontal="35dp"/>
+            android:layout_marginHorizontal="35dp"
+            android:fontFamily="@font/nunito_sans"/>
 
 
 
@@ -180,7 +190,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/primary_btn"
-            android:textColor="@color/black"/>
+            android:textColor="@color/secondary"/>
 
     </RelativeLayout>
 
