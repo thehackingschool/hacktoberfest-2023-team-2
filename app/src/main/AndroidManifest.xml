@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.telephony" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -16,27 +19,68 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.MentalHealth"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".OnBoarding.InfoActivity"
+            android:name=".YogaReadActivity"
             android:exported="false" />
+        <activity
+            android:name=".YogaViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MusicTherapyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SleepReminderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StressTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PHQ9Activity"
+            android:exported="false" />
+        <activity
+            android:name=".MeditationGuideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.StartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Journal.JournalAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.InfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Calendar" />
         <activity
             android:name=".LonelyActivity"
             android:exported="false" />
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestionActivity"
-            android:exported="false"/>
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestion1Activity"
-            android:exported="false"/>
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestion2Activity"
-            android:exported="false"/>
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestion3Activity"
-            android:exported="false"/>
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestion4Activity"
-            android:exported="false"/>
-        <activity android:name=".OnBoarding.Questtionaire.SetupQuestion5Activity"
-            android:exported="false"/>
         <activity
-            android:name=".OnBoarding.StartActivity"
+            android:name=".OnBoarding.Questtionaire.SetupQuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.Questtionaire.SetupQuestion1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.Questtionaire.SetupQuestion2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.Questtionaire.SetupQuestion3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.Questtionaire.SetupQuestion4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.Questtionaire.SetupQuestion5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoarding.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".CrisisActivity"
@@ -46,6 +90,15 @@
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Deep_Breathing_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Journal.JournalViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Journal.JournalReadActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -61,9 +114,29 @@
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
+            android:name=".MeditationPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.MentalHealth" />
+        <activity
+            android:name=".TaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewTaskActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Calendar" />
+        <activity
+            android:name=".WellnessPagesActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Theme.Memorium.Crop" />
+        <activity
+            android:name=".YogaPageActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Halcyon.Yoga" />
 
         <meta-data
             android:name="preloaded_fonts"

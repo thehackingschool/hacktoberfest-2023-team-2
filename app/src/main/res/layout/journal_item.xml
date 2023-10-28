@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginVertical="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:background="@drawable/ques_back">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22:02"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/secondary"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sunday, April 17 2022"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/secondary"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/journal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:text="today was challenging but i managed to overcome ..."
+        android:layout_marginStart="20dp"
+        android:textColor="@color/secondary"
+        android:textSize="19dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_sans"/>
+
+
+
+</RelativeLayout>

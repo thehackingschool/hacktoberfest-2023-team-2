@@ -2,22 +2,21 @@ package com.hacktivators.mentalhealth.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,18 +24,22 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hacktivators.mentalhealth.ChatActivity;
+import com.hacktivators.mentalhealth.Journal.JournalViewActivity;
+import com.hacktivators.mentalhealth.MusicTherapyActivity;
+import com.hacktivators.mentalhealth.PHQ9Activity;
 import com.hacktivators.mentalhealth.R;
-
-import org.w3c.dom.Text;
+import com.hacktivators.mentalhealth.StressTestActivity;
+import com.hacktivators.mentalhealth.TaskActivity;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
 
+    private static final String DPTIME = "DPTIME";
+    private static final String SSTIME = "SSTIME";
     RecyclerView recyclerView;
 
     TextView greet;
@@ -44,21 +47,24 @@ public class HomeFragment extends Fragment {
     CircleImageView profile;
     String greeting = null;
 
-
-
-    View chat_block;
-    LinearLayout foryou, featured;
+    View chat_block,journal,tasks_,music;
+    LinearLayout featured;
 
     TextView foryouTXT,featuredTXT;
 
 
-    TextView art_recom,book_recom,vid_recom;
-    String articleUrl,bookUrl,videoUrl;
-
-    RelativeLayout article,book,video;
+    public static final String TIME = "";
 
 
-    LinearLayout morning,noon,night;
+    TextView art_recom,book_recom,vid_recom,podcast_recom;
+    String articleUrl,bookUrl,videoUrl,podcastUrl;
+
+    RelativeLayout article,book,video,podcast;
+
+
+    LinearLayout morning,noon,night,tests;
+
+    View tasks,depressionTest,stressTest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,15 +77,27 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
 
         featured = view.findViewById(R.id.featured);
+        depressionTest = view.findViewById(R.id.depressionTest);
+        stressTest = view.findViewById(R.id.stressTest);
+        tests = view.findViewById(R.id.tests);
 
         morning = view.findViewById(R.id.morning);
         noon = view.findViewById(R.id.noon);
         night = view.findViewById(R.id.night);
 
+        tasks = view.findViewById(R.id.tasks_night);
+
+
+        journal = view.findViewById(R.id.journal);
+        tasks_ = view.findViewById(R.id.tasks);
+        music = view.findViewById(R.id.music);
+
 
         article = view.findViewById(R.id.article_layout);
         book = view.findViewById(R.id.book_layout);
         video = view.findViewById(R.id.video_layout);
+        podcast = view.findViewById(R.id.podcast_layout);
+
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -90,42 +108,134 @@ public class HomeFragment extends Fragment {
         featuredTXT = view.findViewById(R.id.featuredTXT);
 
         featured.setVisibility(View.GONE);
+
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("tests",0);
+        long DPtime = sharedPreferences.getLong(DPTIME, 0);
+        long SStime = sharedPreferences.getLong(SSTIME, 0);
+
+        tests.setVisibility(View.VISIBLE);
+        depressionTest.setVisibility(View.GONE);
+        stressTest.setVisibility(View.GONE);
+
+        if(isMoreThanAWeek(DPtime)){
+            tests.setVisibility(View.VISIBLE);
+
+            depressionTest.setVisibility(View.VISIBLE);
+        }else {
+            depressionTest.setVisibility(View.GONE);
+        }
+
+        if(isMoreThanAWeek(SStime)){
+
+            tests.setVisibility(View.VISIBLE);
+
+            stressTest.setVisibility(View.VISIBLE);
+        }else {
+            stressTest.setVisibility(View.GONE);
+        }
+
         if(hour < 6){
             night.setVisibility(View.VISIBLE);
+            morning.setVisibility(View.GONE);
+            noon.setVisibility(View.GONE);
         }
         if (hour >= 6 && hour < 12) {
             morning.setVisibility(View.VISIBLE);
-        } else if (hour >= 12 && hour <= 20) {
+            noon.setVisibility(View.GONE);
+            night.setVisibility(View.GONE);
+        } else if (hour >= 12 && hour <= 21) {
             noon.setVisibility(View.VISIBLE);
-        } else if (hour >= 21) {
+            morning.setVisibility(View.GONE);
+            night.setVisibility(View.GONE);
+        } else if (hour >= 22) {
             night.setVisibility(View.VISIBLE);
+            morning.setVisibility(View.GONE);
+            noon.setVisibility(View.GONE);
         }
 
         art_recom = view.findViewById(R.id.article_recom);
         book_recom = view.findViewById(R.id.book_recom);
         vid_recom = view.findViewById(R.id.video_recom);
+        podcast_recom = view.findViewById(R.id.podcast_recom);
 
         chat_block = view.findViewById(R.id.chat_block);
 
-        foryouTXT.setTextColor(getContext().getResources().getColor(R.color.primary));
+        foryouTXT.setTextColor(getContext().getResources().getColor(R.color.secondary));
+        foryouTXT.setBackground(getContext().getResources().getDrawable(R.drawable.accent_back));
+
+
+
+        journal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), JournalViewActivity.class));
+            }
+        });
+
+        tasks_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), TaskActivity.class));
+            }
+        });
+
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MusicTherapyActivity.class));
+            }
+        });
 
 
         foryouTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 featured.setVisibility(View.GONE);
+                if(hour < 6){
+                    night.setVisibility(View.VISIBLE);
+                }
                 if (hour >= 6 && hour < 12) {
                     morning.setVisibility(View.VISIBLE);
-                } else if (hour >= 12 && hour < 20) {
+                } else if (hour >= 12 && hour <= 20) {
                     noon.setVisibility(View.VISIBLE);
-                } else if (hour >= 21 && hour < 24) {
+                } else if (hour >= 21) {
                     night.setVisibility(View.VISIBLE);
                 }
 
-                foryouTXT.setTextColor(getContext().getResources().getColor(R.color.primary));
-                featuredTXT.setTextColor(getContext().getResources().getColor(R.color.black));
+
+                if(isMoreThanAWeek(DPtime)){
+                    tests.setVisibility(View.VISIBLE);
+
+                    depressionTest.setVisibility(View.VISIBLE);
+                }else {
+                    depressionTest.setVisibility(View.GONE);
+                }
+
+                if(isMoreThanAWeek(SStime)){
+
+                    tests.setVisibility(View.VISIBLE);
+
+                    stressTest.setVisibility(View.VISIBLE);
+                }else {
+                    stressTest.setVisibility(View.GONE);
+                }
+
+
+
+
+                foryouTXT.setTextColor(getContext().getResources().getColor(R.color.secondary));
+                foryouTXT.setBackground(getContext().getResources().getDrawable(R.drawable.accent_back));
+                featuredTXT.setTextColor(getContext().getResources().getColor(R.color.secondary));
+                featuredTXT.setBackground(null);
             }
 
+        });
+
+        tasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), TaskActivity.class));
+            }
         });
 
         chat_block.setOnClickListener(new View.OnClickListener() {
@@ -147,15 +257,19 @@ public class HomeFragment extends Fragment {
 
                     night.setVisibility(View.GONE);
 
-                foryouTXT.setTextColor(getContext().getResources().getColor(R.color.black));
-                featuredTXT.setTextColor(getContext().getResources().getColor(R.color.primary));
+                    tests.setVisibility(View.GONE);
+                foryouTXT.setBackground(null);
+                foryouTXT.setTextColor(getContext().getResources().getColor(R.color.secondary));
+                featuredTXT.setTextColor(getContext().getResources().getColor(R.color.secondary));
+                featuredTXT.setBackground(getContext().getResources().getDrawable(R.drawable.accent_back));
 
             }
         });
 
-       // loadData();
-        //Set greeting
 
+        if(hour >= 0){
+            greeting = "You should be sleeping..";
+        }
         if(hour>=6 && hour<12){
             greeting = "Good Morning";
         } else if(hour>= 12 && hour < 17){
@@ -201,6 +315,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        podcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(podcastUrl);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        depressionTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PHQ9Activity.class));
+            }
+        });
+
+        stressTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), StressTestActivity.class));
+            }
+        });
+
+
+
         loadData();
 
 
@@ -241,24 +380,38 @@ public class HomeFragment extends Fragment {
                         String bookTitle = document.getString("bookTitle");
                         String articleTitle = document.getString("articleTitle");
                         String videoTitle = document.getString("videoTitle");
+                        String podcastTitle = document.getString("podcastTitle");
 
                         String bookUrl_ = document.getString("bookUrl");
                         String articleUrl_ = document.getString("articleUrl");
                         String videoUrl_ = document.getString("videoUrl");
+                        String podcastUrl_ = document.getString("podcastUrl");
 
                         art_recom.setText(articleTitle);
                         book_recom.setText(bookTitle);
                         vid_recom.setText(videoTitle);
+                        podcast_recom.setText(podcastTitle);
 
                         bookUrl = bookUrl_;
                         articleUrl = articleUrl_;
                         videoUrl = videoUrl_;
+                        podcastUrl = podcastUrl_;
+
 
 
                     }
                 }
             }
         });
+
+    }
+
+
+    private boolean isMoreThanAWeek(long time){
+
+        long oneWeekAgo = System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+
+        return time < oneWeekAgo;
 
     }
 

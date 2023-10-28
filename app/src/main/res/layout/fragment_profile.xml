@@ -1,15 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragment"
+    android:background="@color/background">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Coming Soon!"
-        />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textSize="30dp"
+                android:fontFamily="@font/nunito_sans"
+                android:textStyle="bold"
+                android:textColor="@color/secondary"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+
+            <!--
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+                -->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/info"
+                tools:src="@drawable/model"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"/>
+
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textSize="18dp"
+                android:fontFamily="@font/nunito_sans"
+
+                android:textColor="@color/secondary"
+                android:layout_below="@+id/profile"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"/>
+
+            <TextView
+                android:id="@+id/nameBox"
+                android:layout_below="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginHorizontal="25sp"
+
+                android:background="@drawable/edit_text"
+
+                android:textColor="@color/black"
+                android:backgroundTint="#F6F6F6"/>
+
+            <TextView
+                android:id="@+id/Email_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="18dp"
+                android:fontFamily="@font/nunito_sans"
+                android:textColor="@color/secondary"
+                android:layout_below="@+id/nameBox"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="40dp"/>
+
+            <TextView
+                android:id="@+id/emailBox"
+                android:layout_below="@+id/Email_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginHorizontal="25sp"
+                android:textColor="@color/black"
+                android:clickable="false"
+                android:background="@drawable/edit_text"
+
+                android:inputType="textPersonName"
+                android:backgroundTint="#F6F6F6"/>
+
+            <TextView
+                android:id="@+id/dobTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                android:textSize="18dp"
+
+                android:textColor="@color/secondary"
+                android:layout_below="@+id/emailBox"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_sans"
+                android:layout_marginStart="40dp"/>
+
+            <TextView
+                android:id="@+id/dobBox"
+                android:layout_below="@+id/dobTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginHorizontal="25sp"
+                android:textColor="@color/black"
+                android:clickable="false"
+                android:background="@drawable/edit_text"
+
+                android:inputType="textPersonName"
+                android:backgroundTint="#F6F6F6"/>
+
+            <TextView
+                android:id="@+id/dep_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Depression Status"
+                android:textSize="18dp"
+                android:textColor="@color/secondary"
+                android:layout_below="@+id/dobBox"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_sans"
+                android:layout_marginStart="30dp"/>
+
+
+            <LinearLayout
+                android:id="@+id/depressionStatusLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dep_txt"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/ds1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ds2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ds3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ds4"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ds5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/stressTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stress Status"
+                android:textSize="18dp"
+                android:textColor="@color/secondary"
+                android:fontFamily="@font/nunito_sans"
+                android:layout_below="@+id/depressionStatusLayout"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"/>
+
+            <LinearLayout
+                android:id="@+id/stressStatusLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stressTxt"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/ss1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ss2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ss3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ss4"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+                <View
+                    android:id="@+id/ss5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@color/primary"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
